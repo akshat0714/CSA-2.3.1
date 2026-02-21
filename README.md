@@ -1,56 +1,81 @@
 # CSA 2.3.1 – Targeted Advertising (Gorilla Version)
 
-## What this project does
-This program reads a list of social media posts and a list of "target words" and then creates a file that contains an advertisement for **only the users** whose posts contain at least one target word.
+## What This Project Does
+
+This program simulates a simple targeted advertising system.
+
+Instead of sending the same advertisement to every user, the program analyzes social media posts and only targets users whose posts suggest they are interested in a specific topic.
 
 In this version, the topic is **gorillas**.
 
----
-
-## Files in this repo
-- `TargetedAd.java` – main program (my solution)
-- `DataCollector.java` – helper that reads posts/target words and writes the ad file
-- `targetWords.txt` – gorilla-related keywords (one per line)
-- `socialMediaPostsSmall.txt` – small dataset for testing
-- `socialMediaPosts.txt` – full dataset (final run)
+The program reads posts, checks for gorilla-related keywords, collects usernames of matching users, and then generates an advertisement file specifically for those users.
 
 ---
 
-## How requirements are met
+## Overall Process
 
-### Preparation
- **Create `targetWords.txt` with target words**
-- `targetWords.txt` contains gorilla-related words like `gorilla`, `silverback`, `troop`, `primate`, etc.
-- One word per line and no blank lines, so it won’t accidentally match everything.
+The program follows this general process:
 
-### Programming
- **Load files into a `DataCollector`**
-- `TargetedAd` creates a `DataCollector` and calls `setData(postsFile, targetWordsFile)`.
+1. Read all social media posts from a file.
+2. Read a list of gorilla-related keywords from another file.
+3. Go through each post one at a time.
+4. Separate the username from the actual post text.
+5. Check if the post text contains any of the target words.
+6. If it does, add that username to a list (without duplicates).
+7. After all posts are checked, create a new file that contains an advertisement line for each targeted user.
 
- **Iterate through posts**
-- Uses `getNextPost()` in a loop until it returns `"NONE"`.
-
- **Build a space-separated String of usernames**
-- Uses a String like `peopleToTarget` and adds usernames separated by spaces.
-
- **Compare each post with each target word**
-- For each post, it loops through every target word using `getNextTargetWord()`.
-- It uses `indexOf(...)` to check if the target word is contained in the post text.
-
- **Create advertisement output file**
-- Calls `prepareAdvertisement("gorillaTargets.txt", peopleToTarget, adMessage)`.
+This simulates how companies might target ads based on user interests.
 
 ---
 
-## Enhancements (extras beyond the minimum)
-- **No duplicate usernames:** a user is only added once even if they match multiple words/posts.
-- **Doesn't match against usernames:** only the post text is checked, to avoid false positives from usernames like `silverback_fan`.
-- **Cleaner matching:** the post text is normalized (lowercased and punctuation removed) so words like `"silverback!"` still match.
-- **Skips blank target words:** prevents the "everyone matches" bug.
+## Files in This Repository
+
+- `TargetedAd.java`  
+  This is the main program. It contains the algorithm required by the assignment and controls the entire targeting process.
+
+- `DataCollector.java`  
+  This helper class handles:
+  - Loading the social media posts file
+  - Loading the target words file
+  - Providing posts and target words one at a time
+  - Writing the final advertisement file
+
+- `targetWords.txt`  
+  Contains gorilla-related keywords, one per line.  
+  Example words include: `gorilla`, `silverback`, `troop`, `primate`, `bamboo`.
+
+- `socialMediaPostsSmall.txt`  
+  A smaller dataset used to test the program quickly and verify that it works correctly.
+
+- `socialMediaPosts.txt`  
+  The full dataset used for the final run.
 
 ---
 
-## How to run
-Compile:
-```bash
-javac DataCollector.java TargetedAd.java
+## How the Requirements Are Met
+
+### Preparation Requirement
+
+**Requirement:** Create a file called `targetWords.txt` and populate it with words that determine if a user is interested in the topic.
+
+**How it is met:**
+
+- The file `targetWords.txt` exists in the repository.
+- It contains one gorilla-related word per line.
+- There are no blank lines, which prevents accidental matching of every post.
+
+This satisfies the preparation portion of the assignment.
+
+---
+
+### Programming Requirement 1: Load Data Using DataCollector
+
+**Requirement:** Create a `DataCollector` object and load both the posts file and the target words file.
+
+**How it is met:**
+
+In `TargetedAd.java`, the program creates a `DataCollector` object and calls:
+
+```java
+DataCollector collector = new DataCollector();
+collector.setData(postsFileName, targetWordsFileName);
