@@ -86,8 +86,6 @@ collector.getNextPost();
 
 This method returns one post at a time. The loop continues until the method returns `"NONE"`, which indicates there are no more posts left.
 
-This ensures every post in the file is examined.
-
 ## Programming Requirement 3: Create a String to Hold Usernames
 
 ### Requirement:
@@ -123,8 +121,6 @@ The algorithm uses nested loops:
 - It uses `indexOf(...)` to check if the target word appears in the post text.
 
 If at least one target word is found in the post text, the username is added to the list.
-
-This directly follows the instructions in the assignment.
 
 ## Programming Requirement 5: Prepare the Advertisement File
 
@@ -166,9 +162,4 @@ The post text is normalized by:
 
 This ensures that words like `"silverback!"` still match the keyword `silverback`.
 
-### 4. Skip Blank Target Words
-
-If `targetWords.txt` accidentally contains a blank line, `indexOf("")` would match every post.
-
-The program skips empty target words to prevent this bug.
 
