@@ -10,8 +10,6 @@ In this version, the topic is **gorillas**.
 
 The program reads posts, checks for gorilla-related keywords, collects usernames of matching users, and then generates an advertisement file specifically for those users.
 
----
-
 ## Overall Process
 
 The program follows this general process:
@@ -25,8 +23,6 @@ The program follows this general process:
 7. After all posts are checked, create a new file that contains an advertisement line for each targeted user.
 
 This simulates how companies might target ads based on user interests.
-
----
 
 ## Files in This Repository
 
@@ -50,8 +46,6 @@ This simulates how companies might target ads based on user interests.
 - `socialMediaPosts.txt`  
   The full dataset used for the final run.
 
----
-
 ## How the Requirements Are Met
 
 ### Preparation Requirement
@@ -65,8 +59,6 @@ This simulates how companies might target ads based on user interests.
 - There are no blank lines, which prevents accidental matching of every post.
 
 This satisfies the preparation portion of the assignment.
-
----
 
 ### Programming Requirement 1: Load Data Using DataCollector
 
